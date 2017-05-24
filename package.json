@@ -7,7 +7,7 @@
 		"ttl2jsonld": "./ttl2jsonld.js"
 	},
 	"scripts": {
-		"example": "./ttl2jsonld.js .example/*.ttl"
+		"example": "./ttl2jsonld.js '.example/*.ttl' --iri $(cat .example/ns-pim-space.ttl.url)"
 	},
 	"repository": {
 		"type": "git",

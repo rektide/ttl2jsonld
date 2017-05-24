@@ -26,6 +26,9 @@ function runFile( filename){
 	var parse
 	if( this){
 		parse= this.parse
+		if( !this.iri&& this.minimist){
+			this.iri= this.minimist.iri|| this.minimist.i
+		}
 	}
 	if( !parse){
 		parse= rdfParseN3.bind( this)
