@@ -8,8 +8,10 @@ var
   readOrExecute= require( "read-or-execute")
 
 function rdfParseN3( data){
-	var parser= new RdfParserN3()
-	return parser.parse( data, null, "welp").then( parsed=> { return {
+	var
+	  iri= this&& this.iri|| "about",
+	  parser= new RdfParserN3()
+	return parser.parse( data, null, iri).then( parsed=> { return {
 		parsed,
 		prefixes: parser.rdf.prefixes
 	}})
@@ -20,9 +22,19 @@ function rdfSerializeJsonld( graph){
 	return serializer.serialize( graph.parsed)
 }
 
-function processFile( filename){
+function runFile( filename){
+	var parse
+	if( this){
+		parse= this.parse
+	}
+	if( !parse){
+		parse= rdfParseN3.bind( this)
+		if( this){
+			this.parse= parse
+		}
+	}
 	return readOrExecute( filename)
-		.then( rdfParseN3)
+		.then( parse)
 		.then( rdfSerializeJsonld)
 		.then( x=> JSON.stringify( x, null, "\t"))
 		.then( console.log)
@@ -34,7 +46,7 @@ function main( opts){
 	// todo: get jsonld prefixes file
 	var
 	  ctx= Object.assign({})
-	ctx.runFile= ctx.runFile|| processFile
+	ctx.runFile= ctx.runFile|| runFile.bind( ctx)
 	return mrwf( ctx)
 }
 
