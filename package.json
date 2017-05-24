@@ -1,0 +1,25 @@
+{
+	"name": "ttl2jsonld",
+	"version": "1.0.0",
+	"description": "Convert Turtle/N3 to Json-LD",
+	"main": "ttl2jsonld.js",
+	"bin": {
+		"ttl2jsonld": "./ttl2jsonld.js"
+	},
+	"scripts": {
+		"example": "./ttl2jsonld.js .example/*.ttl"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://archive.voodoowarez.com/ttl2jsonld"
+	},
+	"keywords": [],
+	"author": "rektide de la faye",
+	"license": "X11",
+	"dependencies": {
+		"main-routine-with-files": "^1.0.2",
+		"rdf-parser-n3": "^0.3.0",
+		"rdf-serializer-jsonld": "^0.3.0",
+		"read-or-execute": "^1.0.5"
+	}
+}
