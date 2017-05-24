@@ -36,7 +36,6 @@ function main( opts){
 	  ctx= Object.assign({})
 	ctx.runFile= ctx.runFile|| processFile
 	return mrwf( ctx)
-		.then( console.log)
 }
 
 module.exports= {
