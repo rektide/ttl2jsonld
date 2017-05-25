@@ -40,6 +40,12 @@ function runFile( filename){
 		.then( parse)
 		.then( rdfSerializeJsonld)
 		.then( x=> JSON.stringify( x, null, "\t"))
+		.then( x=> {
+			if( this.minimist&& (this.minimist.m|| this.minimist.module)){
+				return "export default "+ x
+			}
+			return x
+		})
 		.then( console.log)
 }
 
@@ -47,10 +53,9 @@ function main( opts){
 	process.on( "unhandledRejection", console.error)
 
 	// todo: get jsonld prefixes file
-	var
-	  ctx= Object.assign({})
-	ctx.runFile= ctx.runFile|| runFile.bind( ctx)
-	return mrwf( ctx)
+	opts= Object.assign({}, opts)
+	opts.runFile= opts.runFile|| runFile.bind( opts)
+	return mrwf( opts)
 }
 
 module.exports= {

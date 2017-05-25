@@ -1,6 +1,6 @@
 {
 	"name": "ttl2jsonld",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "Convert Turtle/N3 to Json-LD",
 	"main": "ttl2jsonld.js",
 	"bin": {
